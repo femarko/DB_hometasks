@@ -23,10 +23,9 @@ CREATE TABLE IF NOT EXISTS compilation (
 
 CREATE TABLE IF NOT EXISTS track (
 	id BIGSERIAL PRIMARY KEY,
-	performer_id INTEGER NOT NULL REFERENCES performer(id),
 	album_id INTEGER NOT NULL REFERENCES album(id),
 	track_name VARCHAR(120) NOT NULL,
-	duration NUMERIC NOT NULL
+	duration INTEGER NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS track_compilation (

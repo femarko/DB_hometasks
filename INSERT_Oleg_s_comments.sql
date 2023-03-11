@@ -80,14 +80,18 @@ VALUES
 
 INSERT INTO performer_genre
 VALUES
-	(1, 5),
-	(2, 3),
-	(3, 1),
-	(4, 7),
-	(5, 6),
-	(6, 2),
-	(7, 4),
-	(8, 8);
+	(7, 8),
+	(7, 1),
+	(7, 5),
+	(4, 3),
+	(4, 8),
+	(4, 2),
+	(3, 2),
+	(3, 7),
+	(3, 4),
+	(3, 6),
+	(3, 8),
+	(3, 5);
 
 INSERT INTO performer_album (performer_id, album_id)
 VALUES

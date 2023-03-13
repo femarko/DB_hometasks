@@ -11,8 +11,7 @@ CREATE TABLE IF NOT EXISTS performer (
 CREATE TABLE IF NOT EXISTS album(
 	id BIGSERIAL PRIMARY KEY,
 	album_name VARCHAR(120) NOT NULL,
-	release_year INTEGER NOT NULL CHECK (release_year < 2024 AND release_year > 0),
-	performer_id INTEGER NOT NULL REFERENCES performer(id)
+	release_year INTEGER NOT NULL CHECK (release_year < 2024 AND release_year > 0)
 );
 
 CREATE TABLE IF NOT EXISTS compilation (

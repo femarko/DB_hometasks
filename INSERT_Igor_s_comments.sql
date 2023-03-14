@@ -29,7 +29,7 @@ VALUES
 	(5, 'Album 5', 2018),
 	(6, 'Album 6', 2020),
 	(7, 'Album 7', 2018),
-	(8, 'Album 8', 2000);
+	(8, 'Album 8', 2019);
 
 INSERT INTO track (album_id, track_name, duration)
 VALUES

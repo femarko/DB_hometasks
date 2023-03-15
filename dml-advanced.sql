@@ -9,7 +9,6 @@ ORDER BY count DESC;
 SELECT count(*) FROM album a
 JOIN track t ON a.id = t.album_id
 WHERE release_year >= 2019 AND release_year <= 2020;
---GROUP BY album_name; -- не нужна группировка, потому что необходимо получить общее количество, а не по каждому альбому.
 
 -- 3. средняя продолжительность треков по каждому альбому
 SELECT album_name, avg(duration)  FROM album a 
@@ -18,18 +17,14 @@ GROUP BY album_name
 ORDER BY album_name;
 
 -- 4. все исполнители, которые не выпустили альбомы в 2020 году
-/*SELECT performer_name FROM performer p 
-JOIN album a ON p.id = a.performer_id
-WHERE release_year <> 2020;*/
-
-SELECT performer_name/* Получаем имена исполнителей */
-FROM performer p /* Из таблицы исполнителей */
-WHERE performer_name NOT IN ( /* Где имя исполнителя не входит в вложенную выборку */
-    SELECT performer_name /* Получаем имена исполнителей */
-    FROM performer p2  /* Из таблицы исполнителей */
-    JOIN performer_album pa  ON p2.id  = pa.performer_id  /* Объединяем с промежуточной таблицей */
-    JOIN album a  ON pa.album_id  = a.id  /* Объединяем с таблицей альбомов */
-    WHERE release_year = 2020 /* Где год альбома равен 2020 */
+SELECT performer_name
+FROM performer p
+WHERE performer_name NOT IN (
+    SELECT performer_name
+    FROM performer p2
+    JOIN performer_album pa  ON p2.id  = pa.performer_id
+    JOIN album a  ON pa.album_id  = a.id
+    WHERE release_year = 2020
 );
 
 -- 5. названия сборников, в которых присутствует конкретный исполнитель (выберите сами)
@@ -46,14 +41,11 @@ SELECT album_name FROM album a
 JOIN performer_album pa ON a.id = pa.album_id 
 JOIN performer p ON pa.performer_id = p.id 
 JOIN performer_genre pg ON p.id = pg.genre_id 
---JOIN genre g ON pg.genre_id = g.id 
---WHERE (SELECT count(performer_id) > 1  FROM performer_genre pg)
 GROUP BY a.album_name, performer_name
 HAVING count(pg.genre_id) > 1;
---ORDER BY a.album_name;
 
 -- 7. наименование треков, которые не входят в сборники
-SELECT track_name, compilation_name FROM track t 
+SELECT track_name FROM track t 
 LEFT JOIN track_compilation tc ON t.id = tc.track_id
 LEFT JOIN compilation c ON tc.compilation_id  = c.id
 WHERE compilation_name IS NULL;

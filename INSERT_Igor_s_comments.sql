@@ -74,9 +74,7 @@ VALUES
 	(10, 3),
 	(11, 8),
 	(12, 2),
-	(13, 7),
-	(14, 6),
-	(15, 1);
+	(13, 7);
 
 INSERT INTO performer_genre
 VALUES
